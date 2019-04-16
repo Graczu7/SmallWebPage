@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+   
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="Grzegorz Gracz"/>
+        <title>Internetowa wizytówka</title>
+        <link rel="stylesheet" href="STYLE/style.css"/>
+        <link rel="stylesheet" href="STYLE/menu.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <link rel="icon" href="IMG/favicon.ico"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <span class="logo">
+                <a href="index.html"><img src="IMG/logo.png" alt="logo"/></a>
+            </span>
+            <input type="checkbox" id="nav-btn" class="nav-btn"/>
+            <nav>
+                <ul>
+                    <li><a href="index.html" onclick='unChecked()'>Strona główna</a></li>
+                    <li><a href="obsada.html" onclick='unChecked()'>Zagrajmy w grę</a></li>
+                    <li><a href="runy.html" onclick='unChecked()'>Ciekawostka</a></li>
+                    <li><a href="galeria.html" onclick='unChecked()'>O AUTORZE</a></li>
+                </ul>
+
+            </nav>
+            <label for="nav-btn" class="nav-btn-label">
+                <span>
+                
+                </span>
+            </label>
+        </header>      
+        
+        <main>
+            <section id="home">
+                <h1><span>&nbsp;&nbsp;&nbsp;Ci, którzy są wystarczająco szaleni,</span> <span>by myśleć, że są w stanie zmienić świat,</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;są tymi, którzy go zmieniają.</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Steave Jobs</span></h1>                
+            </section>
+            
+            <section id="content">
+                <h2>Witam wszystkich!</h2>
+				<figure class="homejpg"><img src="IMG/Ja.jpg" alt="home" class="jpghome"/></figure>
+                <p class="hometekst">
+                    Stronka ta powstaje w celu rozwijania własnych umiejętności XD.<br>
+					Jest ona pewnego rodzaju wizytówką osobistą. <br>
+					Zapraszam do oglądania :D
+                </p><br><br><br>
+                <h3>Działa również w aplikacji</h3>
+                <p class="hometekst">
+                    Teraz możesz w dowolnym miejscu na świecie odpalić te apke na swoim smartfonie!
+                </p><br><br>
+                <figure class="homejpg"><img src="IMG/smartfon.jpg" alt="home" class="jpghome"/></figure>
+                <audio controls>
+                    <source src="Audio/Audio.mp3" type='audio/mpeg'>
+                </audio>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Copyright <span id="copy">&copy;</span> 2019, Grzegorz Gracz</p>
+        </footer>
+        
+<script>
+    
+    const navBtn = document.getElementById("nav-btn");
+    
+    function unChecked(){
+        if(navBtn.checked==true)
+        navBtn.checked = false;
+    }
+    
+    $(document).ready(function()
+                              {
+        
+        $(document).scroll(function()
+        {
+            var scrollval = $(document).scrollTop()/100;
+            var $scrollValue = 1 - $(document).scrollTop()/500;
+            $('.home-box').css('opacity', $scrollValue);
+            
+        });
+
+        $('')
+        
+    });
+    
+</script>
+    </body>
+
+</html>

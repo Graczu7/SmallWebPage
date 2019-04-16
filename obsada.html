@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+   
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="Grzegorz Gracz"/>
+		<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+        <title>Internetowa wizytówka</title>
+        <link rel="stylesheet" href="STYLE/style.css"/>
+        <link rel="stylesheet" href="STYLE/menu.css"/>
+        <link rel="stylesheet" href="STYLE/obsada.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <link rel="icon" href="IMG/favicon.ico"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <span class="logo">
+                <a href="index.html"><img src="IMG/logo.png" alt="logo"/></a>
+            </span>
+            <input type="checkbox" id="nav-btn" class="nav-btn"/>
+            <nav>
+                <ul>
+                    <li><a href="index.html" onclick='unChecked()'>Strona główna</a></li>
+                    <li><a href="obsada.html" onclick='unChecked()'>Zagrajmy w grę</a></li>
+                    <li><a href="runy.html" onclick='unChecked()'>Ciekawostka</a></li>
+                    <li><a href="galeria.html" onclick='unChecked()'>O AUTORZE</a></li>
+                </ul>
+
+            </nav>
+            <label for="nav-btn" class="nav-btn-label">
+                <span>
+                
+                </span>
+            </label>
+        </header>      
+        
+        <main>
+            <section id="home">
+                <h2>Zagrajmy w grę</h2>
+            </section>
+            
+            <section id="content">
+                <div class="gallery">
+                    <table id="board" BORDER=10 table style="width: 70%; height: 35em">
+                <tr>
+                    <td><button id="p0">&nbsp;</button></td>
+                    <td><button id="p1">&nbsp;</button></td>
+                    <td><button id="p2">&nbsp;</button></td>
+                </tr>
+                <tr>
+                    <td><button id="p3">&nbsp;</button></td>
+                    <td><button id="p4">&nbsp;</button></td>
+                    <td><button id="p5">&nbsp;</button></td>
+                </tr>
+                <tr>
+                    <td><button id="p6">&nbsp;</button></td>
+                    <td><button id="p7">&nbsp;</button></td>
+                    <td><button id="p8">&nbsp;</button></td>
+                </tr>
+            </table>
+                <div class="container">     
+                     <button id="reset" type="button" class="btn btn-success">OD NOWA</button>
+                </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Copyright <span id="copy">&copy;</span> 2019, Grzegorz Gracz</p>
+        </footer>
+        
+<script>
+
+            (function(board, reset)
+            {
+                var pos = [
+                    null
+                    ,null
+                    ,null
+                    ,null
+                    ,null
+                    ,null
+                    ,null
+                    ,null
+                    ,null
+                ]
+                ,turn = 1
+                ,ended = false
+                ,check = function()
+                {
+                    var side = 0;
+                    //sprawdź wygraną (pewnie jest algorytm ;))
+                    if(
+                        ((pos[0] === pos[1]) && (pos[0] === pos[2]) && (side = pos[0])) //1. rząd
+                        || ((pos[3] === pos[4]) && (pos[3] === pos[5]) && (side = pos[3])) //2. rząd
+                        || ((pos[6] === pos[7]) && (pos[6] === pos[8]) && (side = pos[6])) //3. rząd
+                        || ((pos[0] === pos[3]) && (pos[0] === pos[6]) && (side = pos[0])) //1. kolumna
+                        || ((pos[1] === pos[4]) && (pos[1] === pos[7]) && (side = pos[1])) //2. kolumna
+                        || ((pos[2] === pos[5]) && (pos[2] === pos[8]) && (side = pos[2])) //3. kolumna
+                        || ((pos[0] === pos[4]) && (pos[0] === pos[8]) && (side = pos[0])) //skos w prawo
+                        || ((pos[2] === pos[4]) && (pos[2] === pos[6]) && (side = pos[2])) //skos w lewo
+                    )
+                    {
+                        ended = true;
+
+                        return alert('Wygrał ' + (side === 1 ? 'X' : 'O'));
+                    }
+
+                    if(pos.indexOf(null) !== -1 && turn === 2)
+                        computerTurn();
+                    else if(pos.indexOf(null) === -1)
+                    {
+                        alert('Gra skończona');
+                        ended = true;
+                    }
+                }
+                ,computerTurn = function()
+                {
+                    var id;
+
+                    do
+                    {
+                        id = Math.floor(Math.random()*8);
+                    }
+                    while(pos[id]);
+
+
+                    pos[id] = 2;
+                    document.getElementById('p' + id).innerHTML = 'O';
+
+                    turn = 1;
+
+                    check();
+                };
+
+                board.addEventListener('click', function(e)
+                {
+                    e.preventDefault();
+
+                    var target = e.target;
+
+                    if(ended || target.tagName.toLowerCase() !== 'button')
+                        return;
+
+                    var id = target.id[1];
+
+                    if(pos[id])
+                        return alert('Wybierz puste pole');
+
+                    pos[id] = 1;
+
+                    target.innerHTML = 'X';
+
+                    turn = 2;
+
+                    check();
+                });
+
+                reset.addEventListener('click', function(e)
+                {
+                    e.preventDefault();
+
+                    [].forEach.call(board.getElementsByTagName('button'), function(button)
+                    {
+                        button.innerHTML = '&nbsp';
+                    });
+
+                    var i = 9;
+                    while(i--)
+                        pos[i] = null;
+
+                    ended = false;
+                });
+            }(document.getElementById('board'), document.getElementById('reset')));
+            
+    
+    const navBtn = document.getElementById("nav-btn");
+    
+    function unChecked(){
+        if(navBtn.checked==true)
+        navBtn.checked = false;
+    }
+    
+    $(document).ready(function()
+                              {
+        
+        $(document).scroll(function()
+        {
+            var scrollval = $(document).scrollTop()/100;
+            var $scrollValue = 1 - $(document).scrollTop()/500;
+            $('.home-box').css('opacity', $scrollValue);
+            
+        });
+
+        $('')
+        
+    });
+    
+</script>
+    </body>
+
+</html>

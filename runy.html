@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+   
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="Grzegorz Gracz"/>
+        <title>Internetowa wizytówka</title>
+        <link rel="stylesheet" href="STYLE/style.css"/>
+        <link rel="stylesheet" href="STYLE/menu.css"/>
+        <link rel="stylesheet" href="STYLE/runy.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <link rel="icon" href="IMG/favicon.ico"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <span class="logo">
+                <a href="index.html"><img src="IMG/logo.png" alt="logo"/></a>
+            </span>
+            <input type="checkbox" id="nav-btn" class="nav-btn"/>
+            <nav>
+                <ul>
+                    <li><a href="index.html" onclick='unChecked()'>Strona główna</a></li>
+                    <li><a href="obsada.html" onclick='unChecked()'>Zagrajmy w grę</a></li>
+                    <li><a href="runy.html" onclick='unChecked()'>Ciekawostka</a></li>
+                    <li><a href="galeria.html" onclick='unChecked()'>O AUTORZE</a></li>
+                </ul>
+
+            </nav>
+            <label for="nav-btn" class="nav-btn-label">
+                <span>
+                
+                </span>
+            </label>
+        </header>      
+        
+        <main>
+            <section id="home">
+                <h2>Ciekawostka</h2>
+            </section>
+            
+            <section id="content">
+                <h2>Dzięki że jesteś!</h2>
+                <p>
+                    W podziękowaniu za Twoją obecność na mojej autorskiej stronie pragnę się zrewanżować promując Twój profil na Facebooku! :D<br>
+					Po prostu kliknij w zdjęcie, zaloguj się i następnie wrzuć w wyszukiwarke internetową link znajdujący się poniżej  żeby się przekonać, że nie kłamię.<br>
+					LINK:&nbsp; &nbsp; www.facebook.com/profile.php?=7432645066541
+                </p>
+                <div class="gallery">
+				    
+                    <figure><img src="IMG/pytajnik.jpg" alt="?"/><figcaption>?</figcaption></figure>
+                    <figure>
+					    <a href="https://www.facebook.com/" target="_blank"><img src="IMG/facebook.jpg" alt="?"/></a><figcaption>!</figcaption>
+					</figure>
+                    <figure><img src="IMG/pytajnik.jpg" alt="?"/><figcaption>?</figcaption></figure>
+                    
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Copyright <span id="copy">&copy;</span> 2019, Grzegorz Gracz</p>
+        </footer>
+        
+<script>
+    
+    const navBtn = document.getElementById("nav-btn");
+    
+    function unChecked(){
+        if(navBtn.checked==true)
+        navBtn.checked = false;
+    }
+    
+    $(document).ready(function()
+                              {
+        
+        $(document).scroll(function()
+        {
+            var scrollval = $(document).scrollTop()/100;
+            var $scrollValue = 1 - $(document).scrollTop()/500;
+            $('.home-box').css('opacity', $scrollValue);
+            
+        });
+
+        $('')
+        
+    });
+    
+</script>
+    </body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+   
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="Grzegorz Gracz"/>
+        <title>Internetowa wizytówka</title>
+        <link rel="stylesheet" href="STYLE/style.css"/>
+        <link rel="stylesheet" href="STYLE/menu.css"/>
+        <link rel="stylesheet" href="STYLE/galeria.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <link rel="icon" href="IMG/favicon.ico"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <span class="logo">
+                <a href="index.html"><img src="IMG/logo.png" alt="logo"/></a>
+            </span>
+            <input type="checkbox" id="nav-btn" class="nav-btn"/>
+            <nav>
+                <ul>
+                    <li><a href="index.html" onclick='unChecked()'>Strona główna</a></li>
+                    <li><a href="obsada.html" onclick='unChecked()'>Zagrajmy w grę</a></li>
+                    <li><a href="runy.html" onclick='unChecked()'>Ciekawostka</a></li>
+                    <li><a href="galeria.html" onclick='unChecked()'>O AUTORZE</a></li>
+                </ul>
+
+            </nav>
+            <label for="nav-btn" class="nav-btn-label">
+                <span>
+                
+                </span>
+            </label>
+        </header>      
+        
+        <main>
+            <section id="home">
+                <h2>&nbsp;O AUTORZE</h2>
+            </section>
+            
+            <section id="content">
+                <h2>OTO KILKA Z WIELU TECHNOLOGII KTÓRE POZNAŁEM:</h2><br><br><br>
+				<article class="gallery">
+                        <figure><img src="IMG/Java.jpg" alt="gal1"/></figure>
+                        <figure><img src="IMG/hahatml.jpg" alt="gal2"/></figure>
+                        <figure><img src="IMG/javascript.jpg" alt="gal3"/></figure>
+                        <figure><img src="IMG/python3.jpg" alt="gal4"/></figure>
+                        <figure><img src="IMG/git.jpg" alt="gal5"/></figure>
+                        <figure><img src="IMG/css3.jpg" alt="gal6"/></figure>
+                        <figure><img src="IMG/sql.jpg" alt="gal7"/></figure>
+                </article>
+                
+            </section>
+			
+			<section id="content">
+			    <h2>ODWIEDŹ MNIE NA LINKEDIN ORAZ GITHUB</h2><br><br><br>
+				<h2><a target="_blank" href="https://github.com/Graczu7" class="text-blue">GITHUB</a></h2><br><br>
+				<h2><a target="_blank" href="https://www.linkedin.com/in/grzegorz-gracz-077506163/" class="text-blue">LINKEDIN</a></h2>
+			</section>
+        </main>
+        
+        <footer>
+            <p>Copyright <span id="copy">&copy;</span> 2019, Grzegorz Gracz</p>
+        </footer>
+        
+<script>
+    
+    const navBtn = document.getElementById("nav-btn");
+    
+    function unChecked(){
+        if(navBtn.checked==true)
+        navBtn.checked = false;
+    }
+    
+    $(document).ready(function()
+                              {
+        
+        $(document).scroll(function()
+        {
+            var scrollval = $(document).scrollTop()/100;
+            var $scrollValue = 1 - $(document).scrollTop()/500;
+            $('.home-box').css('opacity', $scrollValue);
+            
+        });
+
+        $('')
+        
+    });
+    
+</script>
+    </body>
+
+</html>
